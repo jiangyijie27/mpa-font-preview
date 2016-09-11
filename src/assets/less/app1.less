@@ -2,3 +2,127 @@
 @import "lib-base";
 @import "lib-ui";
 @import "lib-ui-space";
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 706px) {
+    .h1{
+        margin-left: 28px;
+        margin-right: 28px;
+    }
+    article{
+        max-width: 100%;
+        margin-left: 28px;
+        margin-right: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .h1{
+        margin-bottom: 31px;
+    }
+    .font{
+        font-size: 15px;
+        line-height: 46px;
+    }
+    .font__list{
+        width: 280px;
+        height: 230px;
+    }
+    .font__primary{
+        width: 280px;
+        height: 46px;
+        margin-bottom: 33px;
+
+        &::after{
+            width: 7px;
+            height: 7px;
+        }
+    }
+    .section__part2{
+        position: relative;
+        text-align: left;
+
+        h2,
+        h3{
+            display: inline-block;
+            font-size: 40px;
+        }
+        h2{
+            margin-right: 10px;
+        }
+    }
+    .section__divider{
+        display: block;
+    }
+}
+
+@media (max-width: 413px) {
+    .section__part1{
+        h2{
+            font-size: 48px;
+            line-height: 57px;
+        }
+        h3{
+            font-size: 38px;
+            line-height: 44px;
+        }
+    }
+    .section__part2{
+        h2,
+        h3{
+            font-size: 32px;
+            line-height: 38px;
+        }
+        div:first-of-type{
+            font-size: 20px;
+            line-height: 24px;
+        }
+    }
+    .section__table-row{
+        span:last-of-type,
+        span:nth-of-type(4){
+            display: none;
+        }
+        span:nth-of-type(3){
+            border-right: none;
+        }
+    }
+}
+
+@media (max-width: 336px) {
+    .font__list{
+        width: 100%;
+    }
+    .font__primary{
+        width: 100%;
+        height: 46px;
+        margin-bottom: 33px;
+
+        &::after{
+            width: 7px;
+            height: 7px;
+        }
+    }
+    .section__part1{
+        h2{
+            font-size: 40px;
+            line-height: 47px;
+        }
+        h3{
+            font-size: 32px;
+            line-height: 37px;
+        }
+    }
+    .section__part2{
+        h2,
+        h3{
+            font-size: 28px;
+        }
+        div:first-of-type{
+            font-size: 17px;
+        }
+    }
+}
