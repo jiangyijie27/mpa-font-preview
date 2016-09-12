@@ -1,14 +1,16 @@
 <template>
-    <article :style="{fontFamily: font + ', PingFang SC, Microsoft YaHei' }">
+    <article :style="{fontFamily: font + ', -apple-system, BlinkMacSystemFont, PingFang SC, Microsoft YaHei' }" @click="fontClose()">
         <div class="font">
-            <div class="font__primary" :class="{'font__primary_open' : fontOpen}" @click.self="toggleOpen($event)">
+            <div class="font__primary" :class="{'font__primary_open' : fontOpen}" @click.self.stop="toggleOpen($event)">
                 {{ font }}
 
-                <ol class="font__list">
-                    <li v-for="font in fontList" @click="toggleOpen($event)">
-                        {{ font.family }}
-                    </li>
-                </ol>
+                <div class="font__list-wrapper">
+                    <ol class="font__list">
+                        <li v-for="font in fontList" @click.stop="toggleOpen($event)">
+                            {{ font.family }}
+                        </li>
+                    </ol>
+                </div>
             </div>
         </div>
         <section class="section__part1">
@@ -65,48 +67,62 @@ import vueTap from '../lib/vue-tap';
 Vue.use(vueTap);
 
 export default {
+  props: {
+      fontOpen: {
+        type: Boolean,
+        default: false
+      },
+  },
   data() {
     return {
         font : "Work Sans",
-        fontOpen : false,
         fontList : [
             {
-                family : "Open Sans"
-            },
-            {
-                family : "Helvetica Neue"
-            },
-            {
-                family : "SF UI"
-            },
-            {
-                family : "Roboto"
-            },
-            {
-                family : "Ubuntu"
-            },
-            {
-                family : "Segoe UI"
-            },
-            {
-                family : "Avenir"
-            },
-            {
                 family : "Arial"
+            },
+            {
+                family : "Avenir Next"
+            },
+            {
+                family : "Fira Sans"
             },
             {
                 family : "Helvetica"
             },
             {
-                family : "PingFang SC"
+                family : "Helvetica Neue"
             },
             {
                 family : "Microsoft YaHei"
+            },
+            {
+                family : "Open Sans"
+            },
+            {
+                family : "PingFang SC"
+            },
+            {
+                family : "Roboto"
+            },
+            {
+                family : "Segoe UI"
+            },
+            {
+                family : "SF UI"
+            },
+            {
+                family : "Ubuntu"
+            },
+            {
+                family : "Work Sans"
             }
         ]
     }
   },
   methods:{
+      fontClose(){
+          this.fontOpen = false;
+      },
       toggleOpen(event){
           if(event.target.tagName.toLowerCase() === "li" ){
               this.font = event.target.innerHTML
@@ -309,12 +325,18 @@ footer{
     transition: .2s ease all;
     -webkit-overflow-scrolling: touch;
 
-    ::-webkit-scrollbar-track {
-        background: rgba(0,0,0,0);
-        opacity: 0;
-        visibility: hidden;
+    &::-webkit-scrollbar-track{
+    	border-radius: 10px;
     }
-
+    &::-webkit-scrollbar{
+        margin-right: 5px;
+    	width: 5px;
+    	background-color: rbga(0,0,0,0);
+    }
+    &::-webkit-scrollbar-thumb{
+    	border-radius: 10px;
+    	background-color: #7b7b7b;
+    }
 
     li{
         padding-left: 12px;
