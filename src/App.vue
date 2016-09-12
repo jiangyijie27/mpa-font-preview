@@ -1,7 +1,8 @@
 <template>
-<page-header></page-header>
-<font-select></font-select>
-<page-article></page-article>
+    <div>
+        <page-header></page-header>
+        <page-article :font-open = "fontOpen"></page-article>
+    </div>
 </template>
 
 <script>
@@ -20,5 +21,10 @@ export default {
         PageArticle,
         FontSelect
     },
+    data(){
+        return {
+            fontOpen : false
+        }
+    }
 }
 </script>
