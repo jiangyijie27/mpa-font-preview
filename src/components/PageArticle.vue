@@ -84,9 +84,6 @@ export default {
                 family : "Avenir Next"
             },
             {
-                family : "Fira Sans"
-            },
-            {
                 family : "Helvetica"
             },
             {
