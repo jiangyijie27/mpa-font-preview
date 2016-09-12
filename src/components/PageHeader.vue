@@ -2,7 +2,7 @@
 <h1 class="h1">
     <a href="#">
         <span class="h1__primary">微信广告</span>
-        <span class="h1__secondary">数字字体测试</span>
+        <span class="h1__secondary">数字字体测试 0.0.1</span>
     </a>
 </h1>
 </template>
