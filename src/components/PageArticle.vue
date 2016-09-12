@@ -123,6 +123,10 @@ export default {
       toggleOpen(event){
           if(event.target.tagName.toLowerCase() === "li" ){
               this.font = event.target.innerHTML
+              this.$nextTick(function(){
+                  const article = document.querySelector("article");
+                  console.log(window.getComputedStyle(article,null).getPropertyValue("font-family"));
+              })
           }
           this.fontOpen = !this.fontOpen
       }
@@ -346,6 +350,8 @@ footer{
 }
 .font__primary_open{
     border-color: #a6a6a6;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 
     .font__list{
         display: block;
