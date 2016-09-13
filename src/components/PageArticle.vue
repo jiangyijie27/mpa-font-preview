@@ -11,6 +11,7 @@
                         </li>
                     </ol>
                 </div>
+                <img src="../assets/images/hint.png" alt="" class="font__list-hint" />
             </div>
         </div>
         <section class="section__part1">
@@ -55,6 +56,12 @@
         <p class="section__para1">
             乐队的一首经典老歌《 1030 现在的你在哪里》，青春洋溢的歌声不仅让如今的年轻人纷纷询问，曝光最近 5,000 万次。
         </p>
+        <section class="section__smoothing">
+            <span>font smoothing:</span>
+            <a href="javascript:;" @click = "changeSmooth($event)" data-style="none">none</a>
+            <a href="javascript:;" @click = "changeSmooth($event)" data-style="antialiased" class="active">grayscale</a>
+            <a href="javascript:;" @click = "changeSmooth($event)" data-style="subpixel-antialiased">sub-pixel</a>
+        </section>
         <footer>
             A type tool by TAD
         </footer>
@@ -62,9 +69,13 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import vueTap from '../lib/vue-tap';
-Vue.use(vueTap);
+import Vue from 'vue'
+import vueTap from '../lib/vue-tap'
+import _lodash from 'lodash'
+import $ from 'jquery';
+window.$ = $;
+
+Vue.use(vueTap)
 
 export default {
   props: {
@@ -75,7 +86,8 @@ export default {
   },
   data() {
     return {
-        font : "Work Sans",
+        font : "Arial",
+        activeSmooth : 1,
         fontList : [
             {
                 family : "Arial"
@@ -84,13 +96,22 @@ export default {
                 family : "Avenir Next"
             },
             {
+                family : "EK Mukta"
+            },
+            {
                 family : "Helvetica"
             },
             {
                 family : "Helvetica Neue"
             },
             {
+                family : "Lato"
+            },
+            {
                 family : "Microsoft YaHei"
+            },
+            {
+                family : "Myriad Pro"
             },
             {
                 family : "Open Sans"
@@ -118,20 +139,46 @@ export default {
   },
   methods:{
       fontClose(){
-          this.fontOpen = false;
+          this.fontOpen = false
       },
       toggleOpen(event){
           if(event.target.tagName.toLowerCase() === "li" ){
               this.font = event.target.innerHTML
-              this.$nextTick(function(){
-                  const article = document.querySelector("article");
-                  console.log(window.getComputedStyle(article,null).getPropertyValue("font-family"));
-              })
           }
           this.fontOpen = !this.fontOpen
+      },
+      changeSmooth(event){
+          const $this = $(event.target)
+          $this.addClass("active").siblings().removeClass("active")
+          $("body").css("webkitFontSmoothing",$this[0].dataset.style)
       }
-  }
-};
+  },
+  ready(){
+        const _this = this
+        const _fontList = this.fontList
+
+        $(window).keydown(function(e) {
+            let thisfontIndex = _lodash.findIndex(_fontList,["family" , _this.font])
+
+            if(e.keyCode === 40 && e.altKey){
+                e.preventDefault()
+
+                if(thisfontIndex === _fontList.length - 1){
+                    thisfontIndex = -1
+                }
+                _this.font = _fontList[thisfontIndex + 1].family
+            }
+            if(e.keyCode === 38 && e.altKey){
+                e.preventDefault()
+
+                if(thisfontIndex === 0){
+                    thisfontIndex = _fontList.length
+                }
+                _this.font = _fontList[thisfontIndex - 1].family
+            }
+        })
+    }
+}
 </script>
 <style lang="less">
 article{
@@ -207,6 +254,10 @@ article{
             font-weight: 400;
             line-height: 16px;
         }
+
+        span{
+            margin-left: 10px;
+        }
     }
 }
 .section__table{
@@ -244,7 +295,7 @@ article{
     line-height: 24px;
 }
 .section__para1{
-    margin-bottom: 52px;
+    margin-bottom: 45px;
     font-size: 10px;
     line-height: 14px;
 }
@@ -363,5 +414,50 @@ footer{
     height: 1px;
     background: #313131;
     transform: scaleY(.5);
+}
+.font__list-hint{
+    position: absolute;
+    left: 228px;
+    top: 50%;
+    margin-top: -9px;
+    width: 81px;
+    height: 18px;
+}
+.section__smoothing{
+    margin-bottom: 20px;
+    font-size: 11px;
+    font-family: -apple-system, BlinkMacSystemFont;
+    color: #949494;
+
+    span{
+        display: inline-block;
+        vertical-align: 0px;
+        margin-right: 6px;
+    }
+
+    a{
+        display: inline-block;
+        box-sizing: border-box;
+        margin-right: 5px;
+        padding: 0 10px;
+        height: 22px;
+        font-size: 10px;
+        line-height: 20px;
+        color: inherit;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+
+        &:hover{
+            color: #757575;
+            background: #fafafa;
+            border-color: #a6a6a6;
+        }
+
+        &.active{
+            color: #f6f6f6;
+            border-color: #434343;
+            background: #434343;
+        }
+    }
 }
 </style>
