@@ -21,11 +21,7 @@ export default {
 .h1{
     margin-top: 10px;
     margin-bottom: 61px;
-    font-family:
-        -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Roboto, "Helvetica Neue", Helvetica,
-        "PingFang SC", Arial, "Hiragino Sans GB", "Microsoft YaHei",
-        sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",  Roboto, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", "Source Han Sans CN", sans-serif;
     font-size: 14px;
     line-height: 56px;
     border-bottom: 1px solid #E0E0E0;
@@ -40,6 +36,7 @@ export default {
     position: relative;
     margin-right: 16px;
     color: #757575;
+    font-weight: 700;
 
     &::after{
         content: "";
@@ -53,6 +50,6 @@ export default {
 }
 .h1__secondary{
     color: #545454;
-    font-weight: 600;
+    font-weight: 700;
 }
 </style>
