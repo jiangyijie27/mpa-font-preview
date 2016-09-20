@@ -13,3 +13,4 @@ test/unit/.eslintrc
 test/unit/index.js
 test/unit/karma.conf.js
 test/unit/specs/Hello.spec.js
+.idea/
