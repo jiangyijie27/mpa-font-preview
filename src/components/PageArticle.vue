@@ -126,7 +126,10 @@ export default {
                 family : "Segoe UI"
             },
             {
-                family : "SF UI"
+                family : "SF UI Display"
+            },
+            {
+                family : "SF UI Text"
             },
             {
                 family : "Ubuntu"
